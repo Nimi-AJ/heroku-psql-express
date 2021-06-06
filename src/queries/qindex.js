@@ -2,7 +2,7 @@ import client from '../database/dindex.js';
 
 export const getUsers = async (req, res) => {
   try {
-    const response = await client.query('SELECT * FROM  ORDER BY id ASC');
+    const response = await client.query('SELECT * FROM players');
 
     if (response) {
       return res.status(200).json({ status: 'success', data: response.rows });
@@ -11,6 +11,16 @@ export const getUsers = async (req, res) => {
     console.log(err);
   }
 };
+
+// const createUser = async(request, response) => {
+//   try{
+//       const {name, email} = request.body;
+//       let check = await pool.query('INSERT into players (name, email) VALUES ($1, $2) RETURNING *', ['myname', 'this']) 
+//       response.status(201).json(check.rows);
+//   } catch(e){
+//       console.log(e);
+//   }
+// }
 
 // export const createUser = async (req, res) => {
 //   try{
